@@ -1,0 +1,150 @@
+{
+  "name": "TypeForms",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "262331b1-3603-4481-b549-dcd9441ab4fb",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -240,
+        16
+      ],
+      "id": "605b5045-e9ab-4444-bd07-79efed088826",
+      "name": "Webhook",
+      "webhookId": "262331b1-3603-4481-b549-dcd9441ab4fb"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Rc2V5IPlWYHZnzJbAPRGNYnJN2TjQY3mO-AgC9B6M4E",
+          "mode": "list",
+          "cachedResultName": "TypeForm",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Rc2V5IPlWYHZnzJbAPRGNYnJN2TjQY3mO-AgC9B6M4E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Rc2V5IPlWYHZnzJbAPRGNYnJN2TjQY3mO-AgC9B6M4E/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name ": "={{ $json.body.Name }}",
+            "Email": "={{ $json.body.Email }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name ",
+              "displayName": "Name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -32,
+        16
+      ],
+      "id": "6385e7a5-fc31-42da-916b-a288defdf814",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "IjYxJvGDboWfZui4",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "My New Agent",
+        "emailType": "text",
+        "message": "=hey, {{ $json['Name '] }}\n\ni hope you will be doing well in your life.\ni have to ask some questions.\nare you ready meri Jan, {{ $json['Name '] }}?\n\ncan we use the coursera acount in duo? are you sure?\nbas just ans this one question this will be enough.\n\nthankYou, {{ $json['Name '] }}\nI Love You.\nSalman Shoes de aw Batkhela da\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        176,
+        16
+      ],
+      "id": "3797b7b9-e0d5-4b23-85b6-b46f5f45d2b6",
+      "name": "Send a message",
+      "webhookId": "4736cc50-563c-4614-b56c-dccf16f15883",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "6FCbRWb6GKFFt0Iy",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "376fc82c-ef73-4499-8695-35a71e3f673b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e449de395279578cd825acbf0c77d1cfaec2b83e1ff5906bcd81382778956d9a"
+  },
+  "nodeGroups": [],
+  "id": "uipSzGVYwVbXwpOS",
+  "tags": []
+}
